@@ -1,12 +1,15 @@
-const PositiveMessage = () => <p>Możesz obejrzeć film, Zapraszamy</p>;
-const NegativeMessage = () => (
-  <p>Nie możesz obejrzeć tego filmu jeśli nie masz więcej niż 16 lat</p>
-);
-
+// const PositiveMessage = () => <p>Możesz obejrzeć film, Zapraszamy</p>;
+// const NegativeMessage = () => (<p>Nie możesz obejrzeć tego filmu jeśli nie masz więcej niż 16 lat</p>);
+const ValidationMessage = (props) => {
+const {txt} = props
+  return (
+  <p>{txt}</p>
+  )
+}
 class ToggleCheckbox extends React.Component {
   state = {
-    isConfirmed: false,
-    isFormSubmitted: false
+    isConfirmed: true,
+    isFormSubmitted: true
   };
   handleCheckboxChange = () => {
     this.setState({
@@ -26,9 +29,9 @@ class ToggleCheckbox extends React.Component {
   displayMessage = () => {
     if (this.state.isFormSubmitted) {
       if (this.state.isConfirmed) {
-        return <PositiveMessage />;
+        return <ValidationMessage txt="Możesz obejrzeć film, Zapraszamy"/>;
       } else {
-        return <NegativeMessage />;
+        return <ValidationMessage txt="Nie możesz obejrzeć tego filmu jeśli nie masz więcej niż 16 lat" />;
       }
     } else {
       return null;
@@ -37,6 +40,7 @@ class ToggleCheckbox extends React.Component {
 
   render() {
     // console.log(this.state.isConfirmed);
+    const {isConfirmed} = this.state
     return (
       <>
         <form onSubmit={this.handleFormSubmit}>
@@ -45,7 +49,7 @@ class ToggleCheckbox extends React.Component {
             type="checkbox"
             id="age"
             onChange={this.handleCheckboxChange}
-            checked={this.state.isConfirmed}
+            checked={isConfirmed}
           />
           <label htmlFor="age">Mam co najmniej 16 lat</label>
           <br />
@@ -56,5 +60,9 @@ class ToggleCheckbox extends React.Component {
     );
   }
 }
+
+
+
+
 
 ReactDOM.render(<ToggleCheckbox />, document.getElementById("root"));

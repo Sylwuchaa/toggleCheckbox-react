@@ -8,8 +8,8 @@ const {txt} = props
 }
 class ToggleCheckbox extends React.Component {
   state = {
-    isConfirmed: true,
-    isFormSubmitted: true
+    isConfirmed: false,
+    isFormSubmitted: false
   };
   handleCheckboxChange = () => {
     this.setState({
@@ -23,7 +23,7 @@ class ToggleCheckbox extends React.Component {
     if (!this.state.isFormSubmitted) {
       this.setState({
         isFormSubmitted: true
-      });
+      });``
     }
   };
   displayMessage = () => {
